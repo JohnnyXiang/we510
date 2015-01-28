@@ -6,7 +6,7 @@ spl_autoload_register(function ($class) {
 class StaticExample {
 	static public $aNum = 0;
 	static public function sayHello() {
-		self::$aNum++;
+		self::$aNum++;		
 		print "hello";
 	}
 }
@@ -16,3 +16,5 @@ StaticExample::sayHello();
 print StaticExample::$aNum;
 
 echo Inflector::pluralize("book");
+echo Inflector::ucfirst("BOOK");
+

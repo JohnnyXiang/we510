@@ -28,10 +28,11 @@ class Configuration {
 		$this->file = $file;
 
 		if ( ! file_exists( $file ) ) {
-			throw new FileException( "file '$file' does not exist" );
+			$excetion = new FileException( "file '$file' does not exist" );
+			throw $excetion;
 		}
 
-		$this->xml = simplexml_load_file($file);
+		$this->xml = @simplexml_load_file($file);
 
 		if ( ! is_object( $this->xml ) ) {
 			throw new XmlException( libxml_get_last_error() );

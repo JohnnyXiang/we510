@@ -1,6 +1,11 @@
 <?php
 class TextProductWriter extends ShopProductWriter{
-	public function write() {
+	
+private  function addProduct(ShopProduct $shopProduct){
+		$this->products[]=$shopProduct;
+	}
+	
+	public  function write() {
 		$str = "PRODUCTS:\n";
 		foreach ( $this->products as $shopProduct ) {
 			$str .= $shopProduct->getSummaryLine()."\n";

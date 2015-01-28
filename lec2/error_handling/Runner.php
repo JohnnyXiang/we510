@@ -4,12 +4,14 @@ require_once "Configuration.php";
 class Runner {
 	static function init() {
 		try {
-			$conf = new Configuration( dirname(__FILE__)."/confa01.xml" );
+			$conf = new Configuration( dirname(__FILE__)."/conf01.xml" );
+			
+			
 			print "user: ".$conf->get('user')."\n";
 			print "host: ".$conf->get('host')."\n";
 			$conf->set("pass", "newpass");
 			$conf->write();
-		} catch ( FileException $e ) {
+		} catch ( FileException $e ) {			
 			echo $e->getMessage();
 			// permissions issue or non-existent file
 		} catch ( XmlException $e ) {

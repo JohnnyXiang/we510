@@ -22,6 +22,8 @@ class Person {
 	}
 	function __clone() {
 		$this->id = 0;
+		
+		$this->account = clone $this->account;
 	}
 }
 

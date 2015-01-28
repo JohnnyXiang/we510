@@ -516,7 +516,7 @@ class Inflector  {
 	}
 
 
-	function ucwords($string){
+	static function ucwords($string){
 		return ucwords(strtolower($string));
 	}
 }

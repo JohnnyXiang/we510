@@ -1,5 +1,10 @@
 <?php
 class XmlProductWriter extends ShopProductWriter{
+	
+	public  function addProduct(ShopProduct $shopProduct){
+		$this->products[]=$shopProduct;
+	}
+	
 	public function write() {
 		$str = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
 		$str .= "<products>\n";

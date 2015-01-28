@@ -13,6 +13,7 @@ class PersonWriter {
 class Person {
 	private $_name;
 	private $_age;
+	private $writer;
 
 	function __construct( PersonWriter $writer ) {
 		$this->writer = $writer;
@@ -33,6 +34,7 @@ class Person {
 	}
 
 	function __call( $methodname, $args ) {
+		
 		if ( method_exists( $this->writer, $methodname ) ) {
 			return $this->writer->$methodname( $this );
 		}
@@ -57,12 +59,14 @@ class Person {
 		$this->_age = strtoupper($age);
 	}
 
-	/*
+	
 	function writeName() {
 		$this->writer->writeName( $this );
 	}
-	*/
+	
 }
 
 $person = new Person( new PersonWriter() );
+$person->serName("Peter");
+$person->setAge(11);
 $person->writeName();
