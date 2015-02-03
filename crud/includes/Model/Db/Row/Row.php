@@ -178,6 +178,7 @@ class Row implements ArrayAccess, Countable, RowInterface{
 	 */
 	public function __get($name)
 	{
+		//var_dump($name);
 		if (array_key_exists($name, $this->data)) {
 			return $this->data[$name];
 		} else {

@@ -1,10 +1,13 @@
 <?php
+use Model\Db\Row\Adapter;
+
 class View{
 	protected $_basePath=null;
 	protected $_file = null;
 	protected $_extensions = array('html','php','phtml');
 	
 	function __construct($basePath=null,$renderScript=null){
+		
 		if($basePath != null){
 			$this->setBasePath($basePath);
 		}
@@ -33,7 +36,7 @@ class View{
 			throw new \Exception("No view file found.");	
 		}
 	
-		
+		//echo $this->_file;die();
 		
 		
 		

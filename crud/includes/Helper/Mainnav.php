@@ -8,7 +8,7 @@ class Mainnav implements ViewHelperInterface{
 		$cats = $this->_getAllCats();
 		
 		foreach($cats as $cat){
-			echo "<li><a href='".BASE_URL."posts.php?cat=".$cat->id."'>".$cat->name."s</a></li>";
+			echo "<li><a href='".BASE_URL."posts.php?cat=".$cat->id."'>".$cat->name."</a></li>";
         	
 		}
 	}

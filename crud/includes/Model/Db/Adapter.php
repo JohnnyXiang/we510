@@ -10,6 +10,7 @@ class Adapter{
 	function setAdapter(PDO $adapter){
 		self::$_adapter = $adapter;
 	}
+	
 	function getAdapter(){
 		return self::$_adapter;
 	}

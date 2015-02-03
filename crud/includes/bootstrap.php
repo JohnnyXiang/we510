@@ -14,10 +14,13 @@ function my_autoloader($class)
 
 spl_autoload_register('my_autoloader');
 
+
+
 try{
 	$db = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE.';charset=utf8', DB_USERNAME, DB_PASSWORD);
 	Model\Db\Adapter::setAdapter($db);	
 }catch (Exception $e){
 	echo $e->getMessage();
+	die();
 }
 
