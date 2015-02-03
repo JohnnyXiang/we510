@@ -3,7 +3,7 @@ define('BASE_PATH', realpath(dirname(dirname(__FILE__))));
 define('BASE_VIEW_PATH',BASE_PATH.'/views');
 
 
-require_once BASE_PATH.'/config/db.php';
+require_once BASE_PATH.'/config/config.php';
 
 //autoload
 function my_autoloader($class)
