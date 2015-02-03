@@ -1,7 +1,7 @@
 <?php
 define('BASE_PATH', realpath(dirname(dirname(__FILE__))));
 define('BASE_VIEW_PATH',BASE_PATH.'/views');
-define("BASE_URL", "/we510/crud/");
+
 
 require_once BASE_PATH.'/config/db.php';
 
