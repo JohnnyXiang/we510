@@ -4,6 +4,7 @@ namespace Model\Db\Table;
 use Model\Db\Adapter;
 use Model\Db\Row;
 use \PDO;
+use Model\Db\Row\RowInterface;
 
 abstract class TableAbstract implements TableInterface{
 
@@ -25,13 +26,19 @@ abstract class TableAbstract implements TableInterface{
 	 * @var string
 	 */
 	protected $_rowClass = "Row";
+	
+	protected $_rowClassObject;
 
-	public function __construct($dbAdapter=null)
+	public function __construct($rowClassObject=null,$dbAdapter=null)
 	{
 		if($dbAdapter){
 			$this->_adapter = $dbAdapter;
 		}else{
 			$this->_adapter =  Adapter::getAdapter();
+		}
+		
+		if($rowClassObject){
+			$this->_rowClassObject = $rowClassObject;
 		}
 	}
 
@@ -117,7 +124,7 @@ abstract class TableAbstract implements TableInterface{
 	            'data'     => $row,
 			);
 
-			$rowObj = new $this->_rowClass($data);
+			$rowObj = $this->getRowOject($data);
 
 			$rowSets[] = $rowObj;
 		}
@@ -129,6 +136,23 @@ abstract class TableAbstract implements TableInterface{
 		return $rowSets;
 	}
 
+	protected function getRowOject($data){
+		if($this->_rowClassObject){
+			$rowOject = clone $this->_rowClassObject;
+		}else{
+			$rowOject = new $this->_rowClass();
+		}
+		
+		//(get_class($rowOject));
+		
+		if($rowOject instanceof RowInterface){
+			$rowOject->assignData($data);
+		}else{
+			throw new \Exception("Wrong row class provided");
+		}
+		
+		return $rowOject;
+	}
 	public function fetchRow($where=null,$sort=null){
 		$stmt = $this->select($where,1,$sort);
 
@@ -144,7 +168,7 @@ abstract class TableAbstract implements TableInterface{
 
 
 
-		$rowObj = new $this->_rowClass($data);
+		$rowObj = $this->getRowOject($data);
 
 
 		return $rowObj;

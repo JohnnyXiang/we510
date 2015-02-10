@@ -1,22 +1,24 @@
-<?php include_once 'elements/header.php';?>
+<?php include_once BASE_VIEW_PATH.'/elements/header.php';?>
               <!-- h2 stays for breadcrumbs --> 
-                <h2><a href="index.php">Home</a> &raquo; <a href="#" >News</a>&raquo;<a href="#" class="active">World</a></h2> 
+                <h2><a href="index.php">Home</a> &raquo; <a href="#" ><?php echo $this->cat->name?></a></h2> 
                 
                 <div id="main"> 
-					<h3>world news List</h3> 
+					<h3><?php echo $this->cat->name?> news List</h3> 
                     <table cellpadding="0" cellspacing="0"> 
                         <tr><th width="70">ID</th>
                         <th width="109">Title</th>
-                        <th width="99" >Author</th><th width="86">Status</th>
+                        <th width="99" >Author</th>
+                        <th width="86">Status</th>
                         <th width="135">Date</th>
                         <th width="199" style="text-align:center;">Action</th>
                         </tr> 
-                         <tr> 
-                            <td>34</td> 
-                            <td>Test title</td> 
-                            <td>test</td> 
-                            <td>Pending</td> 
-                             <td>March 3,2009</td>
+                        <?php foreach($this->posts as $post):?>
+                        <tr> 
+                            <td><?php echo $post->id?></td> 
+                            <td><?php echo $post->title?></td> 
+                            <td><?php echo $post->author?></td> 
+                            <td><?php echo $post->getReadableStatus()?></td> 
+                            <td><?php echo date("M d, Y",$post->time_created)?></td>
                             <td class="action"> 
                             <a href="" class="view">Edit</a> 
                             <a href="" class="edit">View</a> 
@@ -25,64 +27,7 @@
                             </td> 
                            
                         </tr> 
-                     	<tr> 
-                            <td>34</td> 
-                            <td>Test title</td> 
-                            <td>test</td> 
-                            <td>Pending</td> 
-                             <td>March 3,2009</td>
-                            <td class="action"> 
-                            <a href="" class="view">Edit</a> 
-                            <a href="" class="edit">View</a> 
-                            <a href="" class="delete">Delete</a>
-                            
-                            </td> 
-                           
-                        </tr> 
-                        <tr> 
-                            <td>34</td> 
-                            <td>Test title</td> 
-                            <td>test</td> 
-                            <td>Pending</td> 
-                            <td>March 3,2009</td>
-                            <td class="action"> 
-                            <a href="" class="view">Edit</a> 
-                            <a href="" class="edit">View</a> 
-                            <a href="" class="delete">Delete</a>
-                            
-                            </td> 
-                            
-                        </tr> 
-                                              
-                        <tr> 
-                            <td>34</td> 
-                            <td>Test title</td> 
-                            <td>test</td> 
-                            <td>Pending</td> 
-                             <td>March 3,2009</td>
-                            <td class="action"> 
-                            <a href="" class="view">Edit</a> 
-                            <a href="" class="edit">View</a> 
-                            <a href="" class="delete">Delete</a>
-                            
-                            </td> 
-                           
-                        </tr> 
-                        <tr> 
-                            <td>34</td> 
-                            <td>Test title</td> 
-                            <td>test</td> 
-                            <td>Pending</td> 
-                            <td>March 3,2009</td>
-                            <td class="action"> 
-                            <a href="" class="view">Edit</a> 
-                            <a href="" class="edit">View</a> 
-                            <a href="" class="delete">Delete</a>
-                            
-                            </td> 
-                            
-                        </tr> 
-                                               
+                     	<?php endforeach;?>                
                         <tr><td colspan="6">
                         <div id="page" class="pages"> 
                           <ul> 
@@ -101,4 +46,4 @@
                     <br /><br /> 
                 </div> 
                 <!-- // #main --> 
-<?php include_once 'elements/footer.php';?>              
+<?php include_once BASE_VIEW_PATH.'/elements/footer.php';?>              

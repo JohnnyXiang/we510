@@ -1,8 +1,9 @@
 <?php
+ini_set("display_errors", 0);
 require_once 'includes/bootstrap.php';
 
-$categoryTable = new Model\Db\Table\Category();
 
+$categoryTable = new Model\Db\Table\Category();
 $cats = $categoryTable->fetchAll();
 //M-V-C
 //M - Model
